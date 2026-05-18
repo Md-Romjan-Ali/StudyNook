@@ -6,7 +6,7 @@ import { IoMdBook } from 'react-icons/io';
 const Navbar = () => {
     const LinksNav=<>
     <li><Link href={'/'}>Home</Link></li>
-    <li><Link href={'/rooms'}>Rooms</Link></li>
+    <li><Link href={'/all-rooms'}>All Rooms</Link></li>
     <li><Link href={'/add-rooms'}>Add Rooms</Link></li>
     </>
 const LinksProfile=<>
