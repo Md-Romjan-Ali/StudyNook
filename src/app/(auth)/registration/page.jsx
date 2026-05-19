@@ -1,10 +1,22 @@
 "use client"
 
+import { authClient } from "@/app/lib/auth-client";
 import Link from "next/link";
 
 const RegistrationPage = () => {
-const regiHandle=()=>{
-    
+const regiHandle=async(e)=>{
+    e.preventDefault()
+    const formData=new FormData(e.target)
+    const user=Object.fromEntries(formData.entries())
+    console.log(user);
+    const { data, error } = await authClient.signUp.email({
+    name: user.name, // required
+    email: user.email, // required
+    password: user.password, // required
+    image: user.image,
+    callbackURL: "/login",
+});
+    console.log(data,error);
 }
     return (
         <div>
@@ -34,6 +46,7 @@ const regiHandle=()=>{
 
         <input
           type="text"
+          name="name"
           placeholder="Enter your name"
           className="w-full px-4 py-3 rounded-2xl bg-black border border-gray-700 text-white outline-none focus:border-blue-500"
         />
@@ -47,7 +60,21 @@ const regiHandle=()=>{
 
         <input
           type="email"
+          name="email"
           placeholder="Enter your email"
+          className="w-full px-4 py-3 rounded-2xl bg-black border border-gray-700 text-white outline-none focus:border-blue-500"
+        />
+      </div>
+      {/* password */}
+      <div>
+        <label className="text-sm text-gray-400 block mb-2">
+          Password
+        </label>
+
+        <input
+          type="password"
+          name="password"
+          placeholder="Type your password"
           className="w-full px-4 py-3 rounded-2xl bg-black border border-gray-700 text-white outline-none focus:border-blue-500"
         />
       </div>
@@ -60,6 +87,7 @@ const regiHandle=()=>{
 
         <input
           type="text"
+          name="image"
           placeholder="Paste your image URL"
           className="w-full px-4 py-3 rounded-2xl bg-black border border-gray-700 text-white outline-none focus:border-blue-500"
         />

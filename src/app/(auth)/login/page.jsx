@@ -1,8 +1,27 @@
+"use client"
+import { authClient } from '@/app/lib/auth-client';
 import Link from 'next/link';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 
 const LoginPage = () => {
+    const loginHandle=async(e)=>{
+e.preventDefault()
+const formData=new FormData(e.target)
+const user=Object.fromEntries(formData.entries())
+const { data, error } = await authClient.signIn.email({
+    email: user.email, // required
+    password: user.password, // required
+    rememberMe: true,
+    callbackURL: "/",
+});
+console.log(data,error);
+    }
+    const signWithGoogle=async()=>{
+        await authClient.signIn.social({
+    provider: "google",
+  });
+    }
     return (
         <div>
             <div className="min-h-screen flex items-center justify-center bg-black px-4">
@@ -20,7 +39,9 @@ const LoginPage = () => {
     </div>
 
     {/* Form */}
-    <form className="space-y-5">
+    <form
+    onSubmit={loginHandle}
+    className="space-y-5">
 
       {/* Email */}
       <div>
@@ -30,6 +51,7 @@ const LoginPage = () => {
 
         <input
           type="email"
+          name='email'
           placeholder="Enter your email"
           className="w-full px-4 py-3 rounded-2xl bg-black border border-gray-700 text-white outline-none focus:border-blue-500"
         />
@@ -43,6 +65,7 @@ const LoginPage = () => {
 
         <input
           type="password"
+          name='password'
           placeholder="Enter your password"
           className="w-full px-4 py-3 rounded-2xl bg-black border border-gray-700 text-white outline-none focus:border-blue-500"
         />
@@ -59,7 +82,7 @@ const LoginPage = () => {
 <div className="divider divider-neutral text-gray-400">
   OR
 </div>
-<button className="btn bg-white rounded-xl w-full text-black border-[#e5e5e5]">
+<button onClick={signWithGoogle} className="btn bg-white rounded-xl w-full text-black border-[#e5e5e5]">
     <FcGoogle size={25}/>
   Login with Google
 </button>
