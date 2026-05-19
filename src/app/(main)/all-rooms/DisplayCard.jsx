@@ -8,6 +8,17 @@ const DisplayCard = ({room}) => {
   const pathName=usePathname()
   const isDetailsPage = pathName.includes("/all-rooms/");
      const {name,image,_id,floor,amenities,capacity_min,description,capacity_max,hourly_rate}=room
+
+     const amenityColors = {
+  wifi: "border-blue-500 text-blue-500",
+  whiteboard: "border-green-500 text-green-500",
+  projector: "border-purple-500 text-purple-500",
+  ac: "border-cyan-500 text-cyan-500",
+  soundproof: "border-gray-600 text-gray-600",
+  usbc: "border-yellow-500 text-yellow-600",
+  parking: "border-orange-500 text-orange-500",
+  coffee: "border-pink-500 text-pink-500",
+};
     return (
         <div>
             <div className=' hover:scale-105 transition-all'>
@@ -78,7 +89,7 @@ const DisplayCard = ({room}) => {
                           amenities?.map((item, index) => (
                             <span
                               key={index}
-                              className="badge badge-outline"
+                              className={`${amenityColors[item]} || badge badge-outline`}
                             >
                               {item}
                             </span>

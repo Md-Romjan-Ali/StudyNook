@@ -1,3 +1,4 @@
+import DeleteBooking from "@/component/BookingDelete";
 import HeroPage from "@/component/Hero";
 import HomePage from "@/component/Home";
 import Image from "next/image";

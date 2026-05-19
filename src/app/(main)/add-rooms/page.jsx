@@ -191,7 +191,8 @@ export default function RoomForm() {
 
         </div>
 
-        {/* Hourly Rate */}
+       <div className="flex gap-4 items-center">
+         {/* Hourly Rate */}
         <div className="form-control mb-4">
           <label className="label pb-1" htmlFor="room-rate">
             <span className="label-text font-medium flex items-center gap-1.5">
@@ -200,7 +201,7 @@ export default function RoomForm() {
             </span>
             <span className="label-text-alt text-error">Required</span>
           </label>
-          <label className="input input-bordered flex items-center gap-2 w-44">
+          <label className="input input-bordered flex items-center gap-2">
             <span className="text-base-content/40">$</span>
             <input
               id="room-rate"
@@ -209,11 +210,15 @@ export default function RoomForm() {
               placeholder="0.00"
               step="0.01"
               min={0}
-              className="grow bg-transparent outline-none border-none"
+              className="input"
             />
             <span className="text-base-content/40 text-xs">/hr</span>
           </label>
         </div>
+      
+       </div>
+
+      
 
         {/* Amenities */}
         <div className="form-control mb-6">
