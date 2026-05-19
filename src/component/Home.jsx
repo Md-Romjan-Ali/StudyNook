@@ -19,11 +19,15 @@ const HomePage =async () => {
 <button className="btn btn-ghost"><Link href={'/all-rooms'}>View All Rooms</Link></button>
                 </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 py-10">
+           <div>
+            <p className="text-sm my-5 text-green-200">Here are limited rooms
+                 <span className="text-xl font-semibold text-green-600"> {rooms.length} </span>. Click View All to see all rooms.</p>
+             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 pb-10">
                 {
                     rooms?.map(room=><DisplayCard key={room._id} room={room}></DisplayCard>)
                 }
             </div>
+           </div>
         </div>
     );
 };

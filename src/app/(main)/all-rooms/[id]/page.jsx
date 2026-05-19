@@ -24,15 +24,15 @@ const DetailsRoom =async ({params}) => {
 
       {/* price top */}
       <div className="flex justify-between items-center mb-10">
-        <h2 className="text-3xl font-bold text-red-600">${total || 0}</h2>
+        <h2 className="text-3xl font-bold text-red-600">$ {total || 0}</h2>
         <span className="text-green-600 font-bold">Total Cost</span>
       </div>
 
       {/* floor + booking */}
       <div className="mt-3 space-y-2 flex flex-col text-sm">
-        <span>{floor} Floor</span>
-        <span>0 Total Booking</span>
-        <span>{capacity_min} Up to people</span>
+        <span><span className="text-green-600">{floor}</span> Floor</span>
+        <span><span className="text-red-600">0</span> Total Booking</span>
+        <span><span className="text-amber-600">{capacity_min}</span> Up to people</span>
       </div>
 
       {/* book button */}

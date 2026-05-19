@@ -91,6 +91,7 @@ export default function RoomForm() {
           <input
             id="room-name"
             type="text"
+            required
             name="name"
             placeholder="e.g. Horizon Suite"
             className="input input-bordered w-full"
@@ -110,7 +111,8 @@ export default function RoomForm() {
           <input
             id="room-image"
             type="url"
-            name="image"
+            name="image" 
+            required
             placeholder="Paste Image URL"
             className="input input-bordered w-full"
             maxLength={80}
@@ -128,6 +130,7 @@ export default function RoomForm() {
           </label>
           <textarea
             id="room-description"
+             required
             name="description"
             placeholder="Brief description of the room…"
             className="textarea textarea-bordered w-full"
@@ -149,6 +152,7 @@ export default function RoomForm() {
             </label>
             <select
               id="room-floor"
+               required
               name="floor"
               className="select select-bordered w-full"
               defaultValue=""
@@ -171,6 +175,7 @@ export default function RoomForm() {
             <div className="flex items-center gap-2">
               <input
                 type="number"
+                 required
                 name="capacity_min"
                 placeholder="Min"
                 className="input input-bordered w-full text-center"
@@ -180,6 +185,7 @@ export default function RoomForm() {
               <span className="text-base-content/40 text-sm shrink-0">–</span>
               <input
                 type="number"
+                 required
                 name="capacity_max"
                 placeholder="Max"
                 className="input input-bordered w-full text-center"
@@ -206,6 +212,7 @@ export default function RoomForm() {
             <input
               id="room-rate"
               type="number"
+               required
               name="hourly_rate"
               placeholder="0.00"
               step="0.01"
@@ -217,9 +224,6 @@ export default function RoomForm() {
         </div>
       
        </div>
-
-      
-
         {/* Amenities */}
         <div className="form-control mb-6">
           <label className="label pb-1">
@@ -276,6 +280,7 @@ export default function RoomForm() {
                 >
                   <input
                     type="checkbox"
+                     required
                     className="checkbox checkbox-sm checkbox-neutral"
                     checked={checked}
                     

@@ -19,6 +19,7 @@ const DisplayCard = ({room}) => {
   parking: "border-orange-500 text-orange-500",
   coffee: "border-pink-500 text-pink-500",
 };
+
     return (
         <div>
             <div className=' hover:scale-105 transition-all'>
@@ -50,8 +51,6 @@ const DisplayCard = ({room}) => {
                       {description}
                     </p>
             }
-                    
-            
                     <div className="space-y-2 mt-3">
             
                       <div className="flex justify-between">
@@ -81,11 +80,8 @@ const DisplayCard = ({room}) => {
                       <h3 className="font-semibold mb-2">
                         Amenities
                       </h3>
-            
                       <div className="flex flex-wrap gap-2">
-            
                         {
-
                           amenities?.map((item, index) => (
                             <span
                               key={index}
@@ -95,10 +91,8 @@ const DisplayCard = ({room}) => {
                             </span>
                           ))
                         }
-            
                       </div>
                     </div>
-            
                     <div className="card-actions justify-end mt-5">
                       {
                         !isDetailsPage &&                                               
@@ -108,11 +102,7 @@ const DisplayCard = ({room}) => {
                         </Link>
                       </button>
                       }
-            
-                      
-            
                     </div>
-            
                   </div>
                 </div>
                     </div>
