@@ -1,6 +1,6 @@
 "use client"
 
-import { authClient } from "@/app/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 
 const RegistrationPage = () => {

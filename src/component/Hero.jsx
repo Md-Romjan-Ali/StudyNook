@@ -1,34 +1,56 @@
 import Image from 'next/image';
 import React from 'react';
-import image from '@/assets/banerimage.png'
 import Link from 'next/link';
 const HeroPage = () => {
     return (
-        <div style={{backgroundImage:'image'}} className='bg-[linear-gradient(90deg,rgba(31,28,105,1)_0%,rgba(110,35,35,1)_50%,rgba(150,30,48,1)_100%)] py-20'>
-            <div className="hero max-w-300 mx-auto">
-  <div className="hero-content flex-col lg:flex-row-reverse">
-    <Image
-    width={300}
-    height={300}
-    alt='hero image'
-      src="https://thumbs.dreamstime.com/b/old-book-magic-lights-vintage-table-68635545.jpg"
-      className="rounded-lg shadow-2xl flex-1"
-    />
-    <div className='flex-1'>
-      <h1 className="md:text-5xl text-3xl font-bold text-gray-300">Find Your Perfect Study Room</h1>
-      <p className="py-6 text-gray-400">
-       Find the perfect quiet space to focus, learn, and grow. Browse comfortable study rooms with peaceful environments, modern facilities, and everything you need for productive study sessions.
-      </p>
-     <div className='flex gap-4'>
-         <Link href={'/all-rooms'}>
-         <button className="btn btn-accent">Explore more</button>
-         </Link>
-      <button className="btn btn-accent btn-outline">Get Started</button>
-     </div>
+       <div
+  className="relative py-24 bg-cover bg-center"
+  style={{
+    backgroundImage:
+      "linear-gradient(rgba(10,10,25,0.85), rgba(25,10,35,0.9)), url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1600&auto=format&fit=crop')",
+  }}
+>
+  <div className="hero max-w-300 mx-auto">
+    <div className="hero-content flex-col lg:flex-row-reverse gap-10">
+      
+      <Image
+        width={400}
+        height={400}
+        alt="hero image"
+        src="https://thumbs.dreamstime.com/b/old-book-magic-lights-vintage-table-68635545.jpg"
+        className="rounded-3xl shadow-2xl border border-gray-700"
+      />
+
+      <div className="flex-1">
+        <div className="badge badge-secondary mb-4 p-4">
+          Quiet • Modern • Comfortable
+        </div>
+
+        <h1 className="md:text-6xl text-4xl font-extrabold leading-tight text-white">
+          Find Your Perfect <br />
+          Study Space
+        </h1>
+
+        <p className="py-6 text-gray-300 max-w-2xl text-lg">
+          Discover peaceful and modern study rooms designed for focus,
+          productivity, and creativity. Book your ideal learning space anytime.
+        </p>
+
+        <div className="flex gap-4 flex-wrap">
+          <Link href={"/all-rooms"}>
+            <button className="btn btn-primary rounded-2xl px-8">
+              Explore Rooms
+            </button>
+          </Link>
+
+          <button className="btn btn-outline btn-secondary rounded-2xl px-8">
+            Get Started
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-        </div>
     );
 };
 
