@@ -1,8 +1,8 @@
 "use client";
 
-
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
 const BookingModal = ({room}) => {
 const router=useRouter()
@@ -13,21 +13,20 @@ const router=useRouter()
     endTime > startTime
       ? (endTime - startTime) * 5
       : 0;
-
+  const { data: session } = authClient.useSession()
+const userId=session?.user?.id
   const handleBooking =async (e) => {
-
     e.preventDefault();
 
-    const form = e.target;
 
+    const form = e.target;
     const bookingData = {
       date: form.date.value,
       startTime,
       endTime,
       total,
     };
-        console.log(bookingData);
-console.log(room._id,'fromfrontent');
+
         const res=await fetch(`http://localhost:5000/studyrooms/${room._id}`,{
         method:"PATCH",
         headers:{
@@ -37,7 +36,22 @@ console.log(room._id,'fromfrontent');
         
     })
   const data=await res.json()
-    console.log(data);
+  const {_id,...userBooking}=room
+  console.log(userBooking,'userBooking');
+
+  const user =await fetch(`http://localhost:5000/usersrooms`,{
+    method:"POST",
+    headers:{
+      'Content-Type':'application/json'
+    },
+    
+    body:JSON.stringify({...userBooking,
+      ...bookingData,
+userId,
+    })
+  })
+  const userData= await user.json()
+
 router.refresh()
     document.getElementById("my_modal_1").close();
   };
@@ -141,33 +155,23 @@ router.refresh()
                     ))
                   }
                 </select>
-
               </div>
-
             </div>
-
             {/* total */}
             <div className="mt-5 text-center">
-
               <h2 className="text-2xl font-bold text-success">
                 Total Price: ${total}
               </h2>
-
             </div>
-
             <button
               type="submit"
               className="btn btn-success w-full mt-5"
             >
               Book
             </button>
-
           </form>
-
         </div>
-
       </dialog>
-
     </div>
   );
 };

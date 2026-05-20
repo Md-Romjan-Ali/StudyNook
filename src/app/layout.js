@@ -4,6 +4,7 @@ setServers(["8.8.8.8", "8.8.4.4"]);
 import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/component/Navbar";
+import Footer from "@/component/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,7 +29,7 @@ export default function RootLayout({ children }) {
         <main className="">
           {children}
         </main>
-
+<Footer/>
         </body>
     </html>
   );

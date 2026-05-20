@@ -1,6 +1,7 @@
 "use client"
+
+import { authClient } from "@/lib/auth-client";
 import { useState } from "react";
-import { HiPhoto } from "react-icons/hi2";
 import {
   MdLayers,
   MdChecklist,
@@ -43,9 +44,12 @@ export default function RoomForm() {
   const visibleChips = selectedAmenities.slice(0, MAX_CHIPS);
   const overflowCount = selectedAmenities.length - MAX_CHIPS;
 
+   const {data:session}=authClient.useSession()
+const email=session?.user.email
+
   const handleSubmit =async (e) => {
     e.preventDefault();
-   
+
     const formData = new FormData(e.target);
 
      const data = {
@@ -57,6 +61,7 @@ export default function RoomForm() {
       capacity_max: formData.get("capacity_max"),
       hourly_rate:  formData.get("hourly_rate"),
       amenities:    selectedAmenities,
+   
     };
   console.log(data);
   const res=await fetch(`http://localhost:5000/studyrooms`,{
@@ -68,7 +73,21 @@ export default function RoomForm() {
 
   })
   const req=await res.json()
-  console.log(req);
+
+  const myList=await fetch(`http://localhost:5000/mylistingdata`,{
+    method:'POST',
+    headers:{
+        'Content-Type':'application/json'
+    },
+    body:JSON.stringify({
+      ...data,
+    email
+  })
+
+  })
+  const ListReq=await myList.json()
+
+  console.log(ListReq);
   };
 
   const handleReset = () => {
