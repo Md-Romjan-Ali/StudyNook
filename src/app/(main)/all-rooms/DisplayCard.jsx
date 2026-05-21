@@ -9,25 +9,12 @@ const DisplayCard = ({room}) => {
   const isDetailsPage = pathName.includes("/all-rooms/");
      const {name,image,_id,floor,amenities,capacity_min,description,capacity_max,hourly_rate}=room
 
-     const amenityColors = {
-  wifi: "border-blue-500 text-blue-500",
-  whiteboard: "border-green-500 text-green-500",
-  projector: "border-purple-500 text-purple-500",
-  ac: "border-cyan-500 text-cyan-500",
-  soundproof: "border-gray-600 text-gray-600",
-  usbc: "border-yellow-500 text-yellow-600",
-  parking: "border-orange-500 text-orange-500",
-  coffee: "border-pink-500 text-pink-500",
-};
 
     return (
         <div>
          <div className="hover:scale-[1.03] transition-all duration-300">
 
-  <div className="card bg-gray-50 dark:bg-gray-900 
-    shadow-lg hover:shadow-2xl 
-    border border-gray-200 dark:border-gray-700 
-    rounded-xl overflow-hidden">
+  <div className="card bg-gray-50 dark:bg-gray-900 shadow-lg hover:shadow-2xl border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
 
     {/* image */}
     <figure className="relative h-56 w-full overflow-hidden">
@@ -51,15 +38,13 @@ const DisplayCard = ({room}) => {
           {name}
         </h2>
 
-        <span className="badge bg-emerald-100 text-emerald-700 
-          dark:bg-emerald-900/40 dark:text-emerald-300 
-          border-none">
+        <span className="badge bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border-none">
           Floor {floor}
         </span>
       </div>
 
-      {/* description */}
-      {!isDetailsPage && (
+    
+      {isDetailsPage && (
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
           {description}
         </p>
@@ -68,7 +53,9 @@ const DisplayCard = ({room}) => {
       {/* details */}
       <div className="space-y-2 mt-4">
 
-        <div className="flex justify-between">
+{
+  isDetailsPage && 
+    <div className="flex justify-between">
           <span className="font-medium text-gray-600 dark:text-gray-300">
             Capacity
           </span>
@@ -76,6 +63,8 @@ const DisplayCard = ({room}) => {
             {capacity_min} - {capacity_max} People
           </span>
         </div>
+}
+      
 
         <div className="flex justify-between">
           <span className="font-medium text-gray-600 dark:text-gray-300">

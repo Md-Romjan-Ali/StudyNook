@@ -3,9 +3,11 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { FaEdit } from "react-icons/fa";
 
-const BookingModal = ({room}) => {
-const router=useRouter()
+const BookingModal = ({ room }) => {
+  const router = useRouter()
   const [startTime, setStartTime] = useState(1);
   const [endTime, setEndTime] = useState(1);
 
@@ -14,10 +16,10 @@ const router=useRouter()
       ? (endTime - startTime) * 5
       : 0;
 
-  const handleBooking =async (e) => {
+  const handleBooking = async (e) => {
 
     e.preventDefault();
-
+    toast.success('Room Update success')
     const form = e.target;
 
     const bookingData = {
@@ -26,19 +28,18 @@ const router=useRouter()
       endTime,
       total,
     };
-        console.log(bookingData);
-console.log(room._id,'fromfrontent');
-        const res=await fetch(`http://localhost:5000/studyrooms/${room._id}`,{
-        method:"PATCH",
-        headers:{
-            'Content-Type':'application/json'
-        },
-        body:JSON.stringify(bookingData)
-        
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/studyrooms/${room._id}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bookingData)
+
     })
-  const data=await res.json()
+    const data = await res.json()
     console.log(data);
-router.refresh()
+    router.refresh()
     document.getElementById("my_modal_2").close();
   };
 
@@ -46,11 +47,13 @@ router.refresh()
     <div>
 
       <button
-        className=""
+        className="flex items-center hover:bg-blue-600            dark:hover:bg-blue-500 
+          text-white border-nonegap-2 dark:bg-blue-600 bg-blue-500 btn w-full"
         onClick={() =>
           document.getElementById("my_modal_2").showModal()
         }
       >
+        <FaEdit />
         Edit
       </button>
 
@@ -146,11 +149,11 @@ router.refresh()
 
             </div>
 
-                  <button
+            <button
               type="submit"
               className="btn btn-success w-full mt-5"
             >
-              Book
+              save
             </button>
 
           </form>

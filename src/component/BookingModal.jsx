@@ -1,11 +1,12 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
 
-const BookingModal = ({room}) => {
-const router=useRouter()
+const BookingModal = ({ room }) => {
+  const router = useRouter()
   const [startTime, setStartTime] = useState(1);
   const [endTime, setEndTime] = useState(1);
 
@@ -14,10 +15,11 @@ const router=useRouter()
       ? (endTime - startTime) * 5
       : 0;
   const { data: session } = authClient.useSession()
-const userId=session?.user?.id
-  const handleBooking =async (e) => {
+  const userId = session?.user?.id
+  const handleBooking = async (e) => {
     e.preventDefault();
 
+    toast.success('Room Booking success')
 
     const form = e.target;
     const bookingData = {
@@ -27,32 +29,33 @@ const userId=session?.user?.id
       total,
     };
 
-        const res=await fetch(`http://localhost:5000/studyrooms/${room._id}`,{
-        method:"PATCH",
-        headers:{
-            'Content-Type':'application/json'
-        },
-        body:JSON.stringify(bookingData)
-        
-    })
-  const data=await res.json()
-  const {_id,...userBooking}=room
-  console.log(userBooking,'userBooking');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/studyrooms/${room._id}`, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bookingData)
 
-  const user =await fetch(`http://localhost:5000/usersrooms`,{
-    method:"POST",
-    headers:{
-      'Content-Type':'application/json'
-    },
-    
-    body:JSON.stringify({...userBooking,
-      ...bookingData,
-userId,
     })
-  })
-  const userData= await user.json()
+    const data = await res.json()
+    const { _id, ...userBooking } = room
 
-router.refresh()
+    const user = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/usersrooms`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+      body: JSON.stringify({
+        ...userBooking,
+        ...bookingData,
+        userId,
+        status: 'Confirmed'
+      })
+    })
+    const userData = await user.json()
+
+    router.refresh()
     document.getElementById("my_modal_1").close();
   };
 
