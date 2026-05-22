@@ -90,7 +90,7 @@ export default function RoomForm() {
 
     })
     const ListReq = await myList.json()
-    formData.reset()
+    e.target.reset()
     console.log(ListReq);
   };
 

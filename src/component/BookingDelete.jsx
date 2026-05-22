@@ -1,4 +1,5 @@
 "use client"
+import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { FaTrash } from 'react-icons/fa';
@@ -23,9 +24,13 @@ const DeleteBooking = ({ room }) => {
     if (!result.isConfirmed) return;
 
     try {
+      const { data } = await authClient.token()
 
       const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/studyrooms/${room._id}`, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+          authorization: `Bearer ${data?.token}`
+        }
       });
       const result = await res.json()
       console.log(result);
