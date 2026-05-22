@@ -11,7 +11,7 @@ import { IoMdBook } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <div className="playfair">
+    <div className="">
       <footer className="bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-800 mt-10">
 
         <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">

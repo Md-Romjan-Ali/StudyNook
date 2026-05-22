@@ -44,7 +44,7 @@ const Navbar = () => {
               />
             </div>
 
-            <h1 className="text-3xl font-extrabold tracking-wide playfair">
+            <h1 className="text-3xl font-extrabold tracking-wide">
               StudyRoom
             </h1>
           </Link>
