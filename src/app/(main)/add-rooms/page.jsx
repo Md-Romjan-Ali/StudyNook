@@ -67,11 +67,12 @@ export default function RoomForm() {
       roomCreator,
       status: "confirmed"
     };
-    console.log(data);
+    const { data: token } = await authClient.token()
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/studyrooms`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token?.token}`
       },
       body: JSON.stringify(data)
 
@@ -81,7 +82,8 @@ export default function RoomForm() {
     const myList = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/mylistingdata`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token?.token}`
       },
       body: JSON.stringify({
         ...data,

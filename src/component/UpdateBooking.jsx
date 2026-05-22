@@ -1,6 +1,7 @@
 "use client";
 
 
+import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -28,11 +29,13 @@ const BookingModal = ({ room }) => {
       endTime,
       total,
     };
+    const { data: token } = await authClient.token()
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/studyrooms/${room._id}`, {
       method: "PATCH",
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${token?.token}`
       },
       body: JSON.stringify(bookingData)
 
