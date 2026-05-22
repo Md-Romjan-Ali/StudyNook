@@ -19,6 +19,6 @@ export const config = {
   matcher: [
     '/my-booking',
     "/my-listings",
-
+    "/all-rooms/:path+"
   ],
 }
