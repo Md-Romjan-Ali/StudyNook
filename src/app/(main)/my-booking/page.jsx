@@ -14,8 +14,15 @@ const MyBookingPage = async () => {
     headers: await headers()
   })
   const userId = session?.user.id
+  const { token } = await auth.api.getToken({
+    headers: await headers()
+  })
 
-  const userBookingReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/usersrooms/${userId}`)
+  const userBookingReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/usersrooms/${userId}`, {
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  })
   const userBookingData = await userBookingReq.json()
 
   return (
@@ -70,7 +77,7 @@ const MyBookingPage = async () => {
             </thead>
 
             <tbody>
-              {userBookingData.map((room) => (
+              {userBookingData?.map((room) => (
                 <tr key={room._id} className="border-t border-base-300 hover:bg-base-200/40 transition">
 
                   <td className="px-4 py-4">
