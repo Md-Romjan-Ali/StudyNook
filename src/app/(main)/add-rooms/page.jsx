@@ -1,6 +1,7 @@
 "use client"
 
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import {
@@ -31,9 +32,9 @@ const AMENITIES = [
 const MAX_CHIPS = 3;
 const FLOORS = [1, 2, 3, 4, 5];
 
-export default function RoomForm() {
+const RoomForm = () => {
   const [selectedAmenities, setSelectedAmenities] = useState([]);
-
+  const router = useRouter()
   const toggleAmenity = (value) => {
     setSelectedAmenities((prev) =>
       prev.includes(value)
@@ -93,7 +94,7 @@ export default function RoomForm() {
     })
     const ListReq = await myList.json()
     e.target.reset()
-    console.log(ListReq);
+    router.push("/")
   };
 
   const handleReset = () => {
@@ -330,4 +331,4 @@ export default function RoomForm() {
     </div>
   );
 }
-
+export default RoomForm;

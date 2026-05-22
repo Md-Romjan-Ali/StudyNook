@@ -7,7 +7,7 @@ const ExtraSection = () => {
             {/* HEADER */}
             <div className="text-center my-10">
                 <h2 className="text-3xl md:text-5xl font-extrabold text-base-content">
-                    Why Students Choose StudyNook
+                    Why Students Choose StudyRoom
                 </h2>
 
                 <p className="mt-4 text-base-content/60 max-w-3xl mx-auto text-sm md:text-lg">

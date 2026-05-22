@@ -12,7 +12,7 @@ const HowItWorksSection = () => {
             {/* Heading */}
             <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-base-content">
-                    How StudyNook Works
+                    How StudyRoom Works
                 </h2>
                 <p className="text-base-content/60 mt-2">
                     Simple steps to book your perfect study space

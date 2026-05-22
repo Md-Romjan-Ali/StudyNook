@@ -63,7 +63,10 @@ const BookingModal = ({ room }) => {
       <dialog id="my_modal_2" className="modal">
 
         <div className="modal-box">
-
+          <form method="dialog" className="flex justify-end">
+            {/* if there is a button, it will close the modal */}
+            <button className="btn">Close</button>
+          </form>
           <form
             onSubmit={handleBooking}
             className="border-2 w-full p-5 rounded-xl"

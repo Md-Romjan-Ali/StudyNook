@@ -9,7 +9,6 @@ const DisplayCard = ({ room }) => {
   const isDetailsPage = pathName.includes("/all-rooms/");
   const { name, image, _id, floor, amenities, capacity_min, description, capacity_max, hourly_rate } = room
 
-
   return (
     <div>
       <div className="hover:scale-[1.03] transition-all duration-300">

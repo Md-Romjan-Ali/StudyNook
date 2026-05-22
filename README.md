@@ -4,7 +4,7 @@ StudyRoom is a modern and user-friendly study room booking platform where studen
 
 ---
 
-## 🌐 Live Website
+##  Live Website
 
 🔗 https://study-nook-delta.vercel.app/
 
@@ -12,20 +12,20 @@ StudyRoom is a modern and user-friendly study room booking platform where studen
 
 ## 🚀 Features
 
-- 🔐 Secure user authentication and login system
-- 📖 Browse all available study rooms with detailed information
-- 🏠 Add and manage personal study room listings
-- 📅 Book study rooms quickly and easily
-- ❌ Cancel bookings with real-time booking status updates
-- ⚡ Fast and optimized performance using Next.js
-- 🎨 Modern responsive UI built with Tailwind CSS and DaisyUI
-- 📱 Fully responsive design for mobile, tablet, and desktop
-- 🔎 Dynamic room details page with server-side rendering
-- 🌙 Clean and user-friendly interface for better user experience
+-  Secure user authentication and login system
+-  Browse all available study rooms with detailed information
+-  Add and manage personal study room listings
+-  Book study rooms quickly and easily
+-  Cancel bookings with real-time booking status updates
+-  Fast and optimized performance using Next.js
+-  Modern responsive UI built with Tailwind CSS and DaisyUI
+-  Fully responsive design for mobile, tablet, and desktop
+-  Dynamic room details page with server-side rendering
+-  Clean and user-friendly interface for better user experience
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 ### Frontend
 - Next.js
@@ -47,13 +47,13 @@ StudyRoom is a modern and user-friendly study room booking platform where studen
 
 ## 📂 Main Pages
 
-- 🏠 Home Page
-- 📚 All Rooms
-- 🔍 Room Details
-- ➕ Add Rooms
-- 📝 My Listings
-- 📅 My Booking
-- 🔐 Login & Registration
+-  Home Page
+-  All Rooms
+-  Room Details
+-  Add Rooms
+-  My Listings
+-  My Booking
+-  Login & Registration
 ---
 ---
 ----

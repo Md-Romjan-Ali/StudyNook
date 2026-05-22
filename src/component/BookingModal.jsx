@@ -29,7 +29,7 @@ const BookingModal = ({ room }) => {
   const handleBooking = async (e) => {
     e.preventDefault();
     const { data: token } = await authClient.token()
-    toast.success('Room Booking success')
+
 
     const form = e.target;
     const bookingData = {
@@ -39,6 +39,13 @@ const BookingModal = ({ room }) => {
       total,
     };
 
+    if (room.date === bookingData.date
+      &&
+      room.startTime === bookingData.startTime
+    ) {
+      toast.error('This Room Already Bocked')
+      return;
+    }
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/studyrooms/${room._id}`, {
       method: "PATCH",
@@ -67,7 +74,7 @@ const BookingModal = ({ room }) => {
       })
     })
     const userData = await user.json()
-
+    toast.success('Room Booking success')
     router.refresh()
     document.getElementById("my_modal_1").close();
   };
@@ -90,7 +97,10 @@ const BookingModal = ({ room }) => {
             onSubmit={handleBooking}
             className="border-2 w-full p-5 rounded-xl"
           >
-
+            <form method="dialog" className="flex justify-end">
+              {/* if there is a button, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
             <h1 className="text-2xl text-gray-400 font-semibold my-5">
               Add Date & Time
             </h1>
@@ -183,7 +193,9 @@ const BookingModal = ({ room }) => {
             >
               Book
             </button>
+
           </form>
+
         </div>
       </dialog>
     </div>
