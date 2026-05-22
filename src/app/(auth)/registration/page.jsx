@@ -1,10 +1,9 @@
 "use client"
-
-
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const RegistrationPage = () => {
@@ -13,7 +12,7 @@ const RegistrationPage = () => {
     e.preventDefault()
     const formData = new FormData(e.target)
     const user = Object.fromEntries(formData.entries())
-    console.log(user);
+
     const password = user.password;
     // password validation
     const passwordRegex =
@@ -37,7 +36,9 @@ const RegistrationPage = () => {
     });
     console.log(data, error);
 
-
+    if (data) {
+      toast.success("Register Succefully")
+    }
     redirect('/login')
   }
 

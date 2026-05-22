@@ -37,10 +37,6 @@ const DisplayCard = ({ room }) => {
               <h2 className="card-title text-xl font-bold text-gray-800 dark:text-white">
                 {name}
               </h2>
-
-              <span className="badge bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border-none">
-                Floor {floor}
-              </span>
             </div>
 
 
@@ -65,10 +61,9 @@ const DisplayCard = ({ room }) => {
                 </div>
               }
 
-
               <div className="flex justify-between">
-                <span className="font-medium text-gray-600 dark:text-gray-300">
-                  Hourly Rate
+                <span className="badge bg-emerald-100 text-emerald-700 dark:bg-emerald-900/40 dark:text-emerald-300 border-none">
+                  Floor {floor}
                 </span>
                 <span className="text-indigo-600 dark:text-indigo-400 font-bold">
                   ${hourly_rate}/hr

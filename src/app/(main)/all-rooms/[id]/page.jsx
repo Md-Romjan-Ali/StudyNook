@@ -15,22 +15,14 @@ const DetailsRoom = async ({ params }) => {
   const session = await auth.api.getSession({
     headers: await headers()
   })
-  const { token } = await auth.api.getToken({
-    headers: await headers()
-  })
-  console.log(token);
 
   const userId = session?.user.id
   const user = session?.user
   const userName = session?.user?.name
   const { id } = await params
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/studyrooms/${id}`, {
-    headers: {
-      authorization: `Bearer ${token}`
-    }
-  })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/studyrooms/${id}`)
   const room = await res.json()
-  const { floor, total, capacity_min, roomCreator } = room;
+  const { floor, total, capacity_max, roomCreator } = room;
 
   const filterName = roomCreator == userName
 
@@ -42,7 +34,9 @@ const DetailsRoom = async ({ params }) => {
 
       <div className="grid md:grid-cols-4 grid-cols-1 gap-5">
         <div className="col-span-2">
+
           <DisplayCard room={room} />
+
         </div>
         <div className="col-span-2">
           <div className="border border-gray-200 dark:border-gray-700 
@@ -74,13 +68,13 @@ const DetailsRoom = async ({ params }) => {
               </span>
 
               <span className="hover:bg-rose-100 dark:hover:bg-rose-900/30 px-2 py-1 rounded-md transition">
-                <span className="text-rose-500 dark:text-rose-400 font-semibold">{userBookingData.length} </span>
+                <span className="text-rose-500 dark:text-rose-400 font-semibold">{userBookingData?.length} </span>
                 Total Booking
               </span>
 
               <span className="hover:bg-amber-100 dark:hover:bg-amber-900/30 px-2 py-1 rounded-md transition">
                 <span className="text-amber-600 dark:text-amber-400 font-semibold">
-                  {capacity_min}
+                  {capacity_max}
                 </span> Up to people
               </span>
 

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
 import { IoMdBook } from 'react-icons/io';
+import { MdMenu } from 'react-icons/md';
 
 const Navbar = () => {
   const { data: session } = authClient.useSession()
@@ -34,9 +35,6 @@ const Navbar = () => {
 
         {/* Left */}
         <div className="navbar-start">
-
-
-
           {/* Logo */}
           <Link href={"/"} className="flex items-center gap-3">
             <div className="bg-cyan-400/20 p-2 rounded-full border border-cyan-300/30">
@@ -46,7 +44,7 @@ const Navbar = () => {
               />
             </div>
 
-            <h1 className="text-2xl font-extrabold tracking-wide">
+            <h1 className="text-3xl font-extrabold tracking-wide playfair">
               StudyRoom
             </h1>
           </Link>
@@ -55,35 +53,40 @@ const Navbar = () => {
         {/* Center */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 gap-2 font-medium">
+
             {LinksNav}
             {session && LinksProfile}
           </ul>
         </div>
 
         {/* Right */}
+        <div className='hidden'>
+
+        </div>
         <div className="navbar-end">
 
           {session ? (
             <div className="flex items-center gap-4">
 
               {/* Profile */}
-              <details className="dropdown dropdown-end">
-                <summary className="btn btn-ghost btn-circle avatar">
+              <div className="dropdown dropdown-end">
+                <summary tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-15 rounded-full border-2 border-cyan-300 shadow-lg">
                     <Image
-                      width={60}
-                      height={60}
+                      width={80}
+                      height={80}
                       alt="profile"
                       src={
                         session?.user?.image ||
                         "https://img.daisyui.com/images/profile/demo/batperson@192.webp"
                       }
+
                     />
                   </div>
                 </summary>
-                <ul className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow-xl bg-slate-900 rounded-2xl w-45 text-white border border-cyan-400/10">
+                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow-xl bg-slate-900 rounded-2xl w-45 text-white border border-cyan-400/10">
 
-                  <div className="md:hidden">
+                  <div className="lg:hidden">
                     {LinksNav}
                   </div>
 
@@ -95,27 +98,58 @@ const Navbar = () => {
                     </button>
                   </li>
                 </ul>
-              </details>
+              </div>
               {/* Name */}
               <h1 className="font-semibold text-cyan-100">
                 Hi, {name}
               </h1>
             </div>
           ) : (
-            <div className="flex gap-3">
-              <Link href={"/login"}>
-                <button className="btn btn-outline border-cyan-300 text-cyan-200 hover:bg-cyan-400 hover:text-black rounded-xl">
-                  Login
-                </button>
-              </Link>
+            <>
 
-              <Link href={"/registration"}>
-                <button className="btn bg-cyan-400 hover:bg-cyan-300 border-none text-black rounded-xl">
-                  Create Account
-                </button>
-              </Link>
-            </div>
-          )}
+              <div className="dropdown dropdown-end lg:hidden">
+                <label tabIndex={0} className="btn btn-ghost">
+                  <MdMenu size={30} />
+                </label>
+
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-white"
+                >
+                  {LinksNav}
+                  <div className="">
+                    <Link href={"/login"}>
+                      <button className="btn btn-outline my-4 border-cyan-300 text-cyan-200 hover:bg-cyan-400 hover:text-black rounded-xl">
+                        Login
+                      </button>
+                    </Link>
+
+                    <Link href={"/registration"}>
+                      <button className="btn bg-cyan-400 hover:bg-cyan-300 border-none text-black rounded-xl">
+                        Create Account
+                      </button>
+                    </Link>
+                  </div>
+
+                </ul>
+              </div>
+
+              <div className="hidden lg:flex gap-3">
+                <Link href={"/login"}>
+                  <button className="btn btn-outline border-cyan-300 text-cyan-200 hover:bg-cyan-400 hover:text-black rounded-xl">
+                    Login
+                  </button>
+                </Link>
+
+                <Link href={"/registration"}>
+                  <button className="btn bg-cyan-400 hover:bg-cyan-300 border-none text-black rounded-xl">
+                    Create Account
+                  </button>
+                </Link>
+              </div>
+            </>
+          )
+          }
         </div>
       </div>
     </div>

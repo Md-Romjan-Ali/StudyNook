@@ -7,19 +7,32 @@ import {
   FaEnvelope,
   FaPhone,
 } from "react-icons/fa6";
+import { IoMdBook } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <div>
+    <div className="playfair">
       <footer className="bg-gray-50 dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-800 mt-10">
 
         <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
 
           {/* Logo / About */}
           <div>
-            <h2 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-              StudyRoom
-            </h2>
+            <div className="navbar-start">
+              {/* Logo */}
+              <Link href={"/"} className="flex items-center gap-3">
+                <div className="bg-cyan-400/20 p-2 rounded-full border border-cyan-300/30">
+                  <IoMdBook
+                    size={28}
+                    className="text-cyan-300"
+                  />
+                </div>
+
+                <h1 className="text-2xl font-extrabold tracking-wide">
+                  StudyRoom
+                </h1>
+              </Link>
+            </div>
 
             <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
               Find and book the perfect study room with comfort, quiet space and modern facilities.
@@ -41,6 +54,11 @@ const Footer = () => {
               <li>
                 <Link href="/all-rooms" className="hover:text-indigo-500 transition">
                   All Room
+                </Link>
+              </li>
+              <li>
+                <Link href="/all-rooms" className="hover:text-indigo-500 transition">
+                  About
                 </Link>
               </li>
 

@@ -100,11 +100,49 @@ const AllRoomsPage = () => {
         </div>
 
         {/* cards */}
-        <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {processedRooms.map((room) => (
-            <DisplayCard key={room._id} room={room} />
-          ))}
-        </div>
+        {
+          processedRooms.length === 0 ?
+            <div className="flex flex-col col-span-3 items-center justify-center py-20 px-6 rounded-2xl 
+bg-gradient-to-br from-gray-100 to-gray-200 
+dark:from-gray-900 dark:to-gray-800 
+border border-gray-200 dark:border-gray-700 
+shadow-lg text-center">
+
+              {/* icon */}
+              <div className="w-20 h-20 rounded-full 
+    bg-indigo-100 dark:bg-indigo-900/40 
+    flex items-center justify-center mb-5">
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-10 h-10 text-indigo-600 dark:text-indigo-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.8}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3 10h18M7 15h1m4 0h5M5 6h14a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2z"
+                  />
+                </svg>
+              </div>
+
+              {/* title */}
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+                Not Found Data
+              </h2>
+
+            </div>
+            :
+            <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {processedRooms.map((room) => (
+                <DisplayCard key={room._id} room={room} />
+              ))}
+            </div>
+        }
+
       </div>
     </div>
   );

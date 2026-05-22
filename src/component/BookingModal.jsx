@@ -16,9 +16,19 @@ const BookingModal = ({ room }) => {
       : 0;
   const { data: session } = authClient.useSession()
   const userId = session?.user?.id
+
+  const bookinghandle = async () => {
+    const { data: token } = await authClient.token()
+
+    if (!token?.token) {
+      router.push('/login')
+      return;
+    }
+    document.getElementById("my_modal_1").showModal()
+  }
   const handleBooking = async (e) => {
     e.preventDefault();
-
+    const { data: token } = await authClient.token()
     toast.success('Room Booking success')
 
     const form = e.target;
@@ -28,7 +38,7 @@ const BookingModal = ({ room }) => {
       endTime,
       total,
     };
-    const { data: token } = await authClient.token()
+
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/studyrooms/${room._id}`, {
       method: "PATCH",
@@ -67,9 +77,7 @@ const BookingModal = ({ room }) => {
 
       <button
         className="btn btn-success btn-outline w-full"
-        onClick={() =>
-          document.getElementById("my_modal_1").showModal()
-        }
+        onClick={bookinghandle}
       >
         Book Now
       </button>

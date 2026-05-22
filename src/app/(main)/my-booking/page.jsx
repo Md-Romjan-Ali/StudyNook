@@ -118,7 +118,7 @@ const MyBookingPage = async () => {
                     </span>
                   </td>
 
-                  <td className="px-4 py-4">
+                  <td className="px-4 py-4 flex justify-center">
                     {room.status === "Confirmed" ?
                       <button className="btn text-white">
                         <MyBookingListDeletePage room={room} />

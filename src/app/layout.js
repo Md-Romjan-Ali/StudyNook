@@ -6,13 +6,10 @@ import "./globals.css";
 import Navbar from "@/component/Navbar";
 import Footer from "@/component/Footer";
 import { Toaster } from "react-hot-toast";
-
-
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
-
 
 export const metadata = {
   title: "StudyNook",
