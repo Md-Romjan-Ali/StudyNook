@@ -12,8 +12,17 @@ const MyListings = async () => {
   const session = await auth.api.getSession({
     headers: await headers()
   })
+  const { token } = await auth.api.getToken({
+    headers: await headers()
+  })
+  console.log(token, 'from listing');
+
   const email = session?.user?.email
-  const listing = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/mylistingdata/${email}`)
+  const listing = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/mylistingdata/${email}`, {
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  })
   const lists = await listing.json()
 
   return (
@@ -82,7 +91,7 @@ shadow-lg text-center">
             </div>
             <div className={` grid md:grid-cols-3 sm:grid-cols-2 gap-5 my-10`}>
               {
-                lists.map((list) => <div className="hover:scale-[1.03] transition-all duration-300" key={list._id}>
+                lists?.map((list) => <div className="hover:scale-[1.03] transition-all duration-300" key={list._id}>
 
                   <div className="card bg-gray-50 dark:bg-gray-900 
     shadow-lg hover:shadow-2xl 

@@ -17,7 +17,7 @@ const MyBookingPage = async () => {
 
   const userBookingReq = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URI}/usersrooms/${userId}`)
   const userBookingData = await userBookingReq.json()
-  console.log(userBookingData)
+
   return (
     <div className="max-w-300 mx-auto">
 
